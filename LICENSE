@@ -1,0 +1,33 @@
+Copyright (c) 2026 Basira AI. All rights reserved.
+
+This software and the Basira AI application distributed from it are
+proprietary. They are published here so that people can download and install
+the app, and for no other purpose.
+
+You may:
+
+  - Download, install and use the Basira AI application on your own devices.
+  - Read this source code.
+
+You may not, without prior written permission from the copyright holder:
+
+  - Copy, modify, merge, publish, distribute, sublicense or sell this source
+    code or any part of it.
+  - Redistribute, repackage, mirror or host the Basira AI application, or
+    offer it for download anywhere other than from the official site.
+  - Reverse engineer, decompile or disassemble the application, except where
+    that right cannot be restricted by law.
+  - Use the Basira AI name, logo or branding.
+
+No licence, express or implied, is granted beyond what is written above.
+
+Making this repository public on GitHub grants other GitHub users the ability
+to view and fork it, because GitHub's Terms of Service require that. It grants
+no other right, and it does not permit any of the uses listed above.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

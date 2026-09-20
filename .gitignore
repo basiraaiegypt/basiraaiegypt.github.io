@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+
+# Generated from whatever APK sits in public/download/ — never edited by hand.
+public/download/release-manifest.json

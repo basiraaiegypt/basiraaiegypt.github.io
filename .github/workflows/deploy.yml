@@ -1,0 +1,67 @@
+# Builds the site and publishes it to GitHub Pages on every push to main.
+#
+# The only setting that needs care is BASE_PATH: the URL prefix the site is
+# served under. Get it wrong and every link and asset points at the wrong
+# place.
+#
+# This repository is named <org>.github.io, which GitHub serves at the root of
+# https://basiraaiegypt.github.io/ — so the prefix is just "/".
+#
+# If the site is ever moved into an ordinary repository, GitHub serves it from
+# https://<org>.github.io/<repo>/ instead, and BASE_PATH has to become
+# "/<repo>/" to match.
+
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-publish from the Actions tab without a new commit.
+  workflow_dispatch:
+
+# Grants the job the rights the Pages deploy needs, and nothing more.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two pushes land together, let the later one finish rather than cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - name: Build
+        env:
+          BASE_PATH: /
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

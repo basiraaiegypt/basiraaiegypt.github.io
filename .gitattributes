@@ -1,0 +1,8 @@
+# Keep line endings as LF in the repository, whatever the machine writes locally.
+# Without this, a Windows checkout rewrites every file to CRLF and the next
+# commit from a Mac or from CI shows the whole tree as changed.
+* text=auto eol=lf
+
+# Binary files: never rewritten, never diffed as text.
+*.apk binary
+*.png binary
