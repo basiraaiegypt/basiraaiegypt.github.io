@@ -1,9 +1,10 @@
 /**
- * Keeps `release-manifest.json` in step with whatever APK is in the download folder.
+ * Gets the download folder ready to publish, from whatever APK was dropped into it.
  *
- * This is the choke point for that job: the CLI and the Vite plugin both call
- * `writeReleaseManifest`, so there is no second path that could write a manifest
- * a different way.
+ * Two things happen: the file takes its published name, and the manifest beside
+ * it is rewritten to match. This is the choke point for both — the CLI and the
+ * Vite plugin call `writeReleaseManifest` and nothing else, so a published APK
+ * cannot end up named or described some other way.
  */
 
 import {readdir, writeFile} from 'node:fs/promises';
@@ -11,16 +12,19 @@ import path from 'node:path';
 
 import {DOWNLOAD_DIR_NAME, type ReleaseManifest} from '../../shared/release.ts';
 import {describeApk} from './apk-descriptor.ts';
+import {usePublishedName} from './published-name.ts';
 import {DOWNLOAD_DIR, MANIFEST_PATH} from './release-paths.ts';
 
 const APK_EXTENSION = '.apk';
 
 /**
- * Describes the APK in the download folder and writes the manifest next to it.
- * Returns what was written so callers can log it.
+ * Renames the APK in the download folder to its published name, describes it,
+ * and writes the manifest next to it. Returns what was written so callers can
+ * log it.
  */
 export async function writeReleaseManifest(): Promise<ReleaseManifest> {
-  const manifest = await describeApk(await findSingleApk());
+  const apkPath = await usePublishedName(await findSingleApk());
+  const manifest = await describeApk(apkPath);
   await writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
   return manifest;
 }

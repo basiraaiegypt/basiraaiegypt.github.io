@@ -17,6 +17,16 @@ export const DOWNLOAD_DIR_NAME = 'download';
 /** Generated file describing the APK. Sits next to it. */
 export const MANIFEST_FILE_NAME = 'release-manifest.json';
 
+/**
+ * What the published APK is called, whatever the build tool named it.
+ *
+ * A build straight out of Flutter is `app-release.apk`, which tells a visitor
+ * nothing once it is sitting in their downloads folder. The build renames it to
+ * this, and the download button hands the same name to the browser, so the file
+ * they save and the file on the server agree.
+ */
+export const PUBLISHED_APK_NAME = 'basira-ai.apk';
+
 /** Where the page finds the manifest, relative to the site root. */
 export const MANIFEST_PATH_FROM_ROOT = `${DOWNLOAD_DIR_NAME}/${MANIFEST_FILE_NAME}`;
 
