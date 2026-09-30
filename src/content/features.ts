@@ -53,4 +53,13 @@ export const FEATURES: readonly Feature[] = [
       'Upload the documents you study from, and keep the summaries and quizzes '
       + 'Basira generates from them side by side in your library.',
   },
+  {
+    id: 'media',
+    icon: 'clapperboard',
+    accent: 'teal',
+    title: 'Listen to it, watch it, keep it',
+    description:
+      'Turn any answer into a podcast where two voices talk it through, or a narrated '
+      + 'video with pictures and captions, in Arabic or English. Download either one to keep.',
+  },
 ] as const;
